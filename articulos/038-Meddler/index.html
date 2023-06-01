@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Pelican Static Site Generator, Powered by Python" />
+    <meta name="description" content="Probablemente todo el mundo ha recibido consejos sobre cómo evitar el phishing, como estar atentos a errores ortográficos u otros errores que alerten de la presencia de estafadores, sin embargo, estas técnicas solo funcionan con las técnicas tradicionales de phishing">
+    <meta name="keywords" content="Ciberseguridad, articulos">
+    <meta name="author" content="Ethergroup">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="Meddler in the Middle (MitM): nuevo tipo de #Phishing">
+    <meta name="twitter:description" content="Probablemente todo el mundo ha recibido consejos sobre cómo evitar el phishing, como estar atentos a errores ortográficos u otros errores que alerten de la presencia de estafadores, sin embargo, estas técnicas solo funcionan con las técnicas tradicionales de phishing">
+    <meta name="twitter:image" content="/articulos/038-Meddler/preview1.png">
+    <meta property="og:title" content="Meddler in the Middle (MitM): nuevo tipo de #Phishing">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/articulos/038-Meddler/">
+    <meta property="og:image" content="/articulos/038-Meddler/preview1.png">
+    <meta property="og:description" content="Probablemente todo el mundo ha recibido consejos sobre cómo evitar el phishing, como estar atentos a errores ortográficos u otros errores que alerten de la presencia de estafadores, sin embargo, estas técnicas solo funcionan con las técnicas tradicionales de phishing">
+    <meta property="og:site_name" content="Ethergroup | Blog">
+    <title>Meddler in the Middle (MitM): nuevo tipo de #Phishing - Ethergroup | Blog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" href="/theme/images/icon-hires.png" sizes="192x192" />
+    <link rel="icon" href="/theme/images/icon-normal.png" sizes="128x128" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-76x76.png" sizes="76x76" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-120x120.png" sizes="120x120" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-152x152.png" sizes="152x152" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-180x180.png" sizes="180x180" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" />
+    <link rel="stylesheet" href="/theme/css/movimientolibre-bs5.css" />
+</head>
+<body>
+<nav id="navigationBase" class="navbar navbar-expand-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigationCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item"><a class="nav-link" href="/authors.html">Autores</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tags.html">Etiquetas</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://ethergroup.mx/">EtherGroup</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li><a class="mx-2" href="https://www.instagram.com/ethergroup/" target="_blank"><i class="fab fa-instagram-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.facebook.com/EtherGroup-184831138858274" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.linkedin.com/company/ethergroup" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
+            </ul>
+    </div>
+    </div>
+</nav><header id="headerSite" class="mb-4">
+    <div id="headerSiteImage" class="container" itemscope itemtype="http://schema.org/Organization">
+        <div class="row">
+            <div class="col-xl-8">
+                <h1 class="display-2" itemprop="name">Ethergroup | Blog</h1>
+                <p class="lead" itemprop="description">Blog sobre tecnologías, hacking, ciberseguridad, software libre y mucho más</p>
+            </div>
+        </div>
+    </div>
+</header>    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+    <article>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Article",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Ethergroup | Blog",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "/theme/images/ethergroup.png"
+                    },
+                    "url": ""
+                },
+                "author": "Ethergroup",
+                "name": "Meddler in the Middle (MitM): nuevo tipo de #Phishing",
+                "headline": "Meddler in the Middle (MitM): nuevo tipo de #Phishing",
+                "description": "Probablemente todo el mundo ha recibido consejos sobre cómo evitar el phishing, como estar atentos a errores ortográficos u otros errores que alerten de la presencia de estafadores, sin embargo, estas técnicas solo funcionan con las técnicas tradicionales de phishing",
+                "dateCreated": "2023-02-21 10:00:00-06:00",
+                "datePublished": "2023-02-21 10:00:00-06:00",
+                "dateModified": "",
+                "image": "/articulos/038-Meddler/preview1.png",
+                "url": "/articulos/038-Meddler/"
+            }
+        </script>
+        <h2>Meddler in the Middle (MitM): nuevo tipo de #Phishing</h2>
+        <p class="lead">Probablemente todo el mundo ha recibido consejos sobre cómo evitar el phishing, como estar atentos a errores ortográficos u otros errores que alerten de la presencia de estafadores, sin embargo, estas técnicas solo funcionan con las técnicas tradicionales de phishing</p>
+        <p>21 February 2023</p>
+        <p><img class="img-fluid" src="038.png" alt="Foto 1"></p>
+<hr>
+<h2>Los ataques de phishing Meddler in the Middle (MitM) y la forma en que evaden estas estrategias.</h2>
+<p>El propósito de un ataque de phishing es configurar una página de inicio de sesión falsa para engañar a los usuarios para que ingresen sus credenciales de inicio de sesión. En los ataques de phishing tradicionales, se suele crear sitio para imitar una página de inicio de sesión legítima, estas pueden alojarse en un dominio recién creado, comprometer un dominio legítimo o usar una plataforma SaaS existente.</p>
+<p>Los Meddler in the Middle (MitM) son un tipo de ataque de phishing de última generación capaz de romper la autenticación de dos factores (2FA) y eludir muchos motores de detección de phishing basados en contenido. En lugar de mostrar una versión falsificada de una página de inicio de sesión de destino, un ataque MitM utiliza un servidor proxy inverso para transmitir la página de inicio de sesión original directamente al navegador del usuario.</p>
+<p><img class="img-fluid" src="038-01.png" alt="Foto 2"></p>
+<p>El trabajo híbrido trajo consigo nuevos retos de ciberseguridad para los usuarios y las empresas; por ejemplo, a partir de noviembre de 2022, varios ataques de phishing han utilizado tácticas MitM para comprometer las cuentas de correo electrónico comerciales y robar con éxito la información confidencial de las organizaciones.</p>
+<p>Hay varios kits de herramientas de phishing MitM populares que facilitan a los delicuentes informáticos lanzar sus propios ataques de phishing MitM con solo unos pocos clics, y estos amplían continuamente sus conjuntos de funciones y, al mismo tiempo, se vuelven más intuitivos y fáciles de usar.</p>
+<p><img class="img-fluid" src="038-02.png" alt="Foto 3"></p>
+<p>A medida que los kits de phishing de MitM crecen en popularidad y continúan ampliando sus conjuntos de funciones, se espera que la prevalencia de los ataques de phishing de MitM también aumente. Los actores de amenazas ya están dando pasos en esta dirección, pues se predice que Evilginx 3.0 se lance en un futuro cercano, junto con un curso en línea sobre cómo ejecutar con éxito un ataque de phishing MitM.</p>
+<p>Por el momento, las acciones que los usuarios finales pueden tomar para protegerse contra los ataques de phishing MitM incluyen la verificación de la validez de una URL antes de ingresar cualquier credencial, usar un administrador de contraseñas para almacenar e ingresar credenciales: si se encuentra en una página de phishing de MitM alojada en un sitio web que el administrador de contraseñas no reconoce, el administrador de contraseñas le avisará antes de ingresar sus credenciales.</p>
+<p>También pueden usarse métodos MFA más actualizados, como claves de seguridad de hardware o WebAuthn 2FA. La inversión en solución de ataques y control de daños no es suficiente, pues estar prevenidos con información actualizada y defensas de última generación es vital para evitar que estos atentados afecten a los usuarios y las empresas que están cada vez más expuestos.</p>
+    </article>
+            </div>
+            <div class="col-lg-4">
+                <aside>
+<div id="asideAbout" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">A cerca de EtherGroup</h3>
+        <p class="card-text">
+            Ethergroup es una empresa mexicana dedicada 
+            a proveer servicios integrales en tecnologías
+            de Información. Lideramos la transformación 
+            tecnológica de nuestros clientes paso a paso, 
+            de forma segura y fungimos como impulso a su 
+            negocio en esta era digital.
+            <br> <br>
+            En Ethergroup nos encanta compartir 
+            contenido te dejamos este espacio, 
+            que busca divulgar conocimiento de 
+            diferentes áreas.
+        </p>
+    </div>
+</div><div id="asideTags" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">Etiquetas</h3>
+        <ul class="list-group list-group-flush">
+<li class="list-group-item"><a href="/tag/ciberataque.html">Ciberataque</a></li><li class="list-group-item"><a href="/tag/ciberataques.html">Ciberataques</a></li><li class="list-group-item"><a href="/tag/ciberseguridad.html">Ciberseguridad</a></li><li class="list-group-item"><a href="/tag/hacking.html">Hacking</a></li><li class="list-group-item"><a href="/tag/linux.html">Linux</a></li><li class="list-group-item"><a href="/tag/malware.html">Malware</a></li><li class="list-group-item"><a href="/tag/programacion.html">Programación</a></li><li class="list-group-item"><a href="/tag/ransomware.html">Ransomware</a></li><li class="list-group-item"><a href="/tag/servidores.html">Servidores</a></li><li class="list-group-item"><a href="/tag/vulnerabilidad.html">Vulnerabilidad</a></li>        </ul>
+    </div>
+</div>                </aside>
+            </div>
+        </div>
+    </div>
+<footer class="text-muted">
+    <div class="container">
+        <p>
+            Copyright &copy; Ethergroup 2021 | Cybersecurity E-group S. de R.L. de C.V. Sitio web de la empresa Ethergroup.
+            Sitio web de la empresa <a href="https://ethergroup.mx/">EtherGroup.</a> 
+        </p>
+    </div>
+</footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/theme/js/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Pelican Static Site Generator, Powered by Python" />
+    <meta name="description" content="¿A quién no le gusta mantener sus credenciales seguras? Hace unos meses y siéndo algo paranóico, me di a la tarea de crear un Cryper de texto plano para poder mantener ya sea texto importante o datos.">
+    <meta name="keywords" content="Hacking, articulos">
+    <meta name="author" content="Imir Torres">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="PASS-CRYPT-v0.1 - Crypter de texto plano programado en C">
+    <meta name="twitter:description" content="¿A quién no le gusta mantener sus credenciales seguras? Hace unos meses y siéndo algo paranóico, me di a la tarea de crear un Cryper de texto plano para poder mantener ya sea texto importante o datos.">
+    <meta name="twitter:image" content="/articulos/007-Crypter/preview1.png">
+    <meta property="og:title" content="PASS-CRYPT-v0.1 - Crypter de texto plano programado en C">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/articulos/007-Crypter/">
+    <meta property="og:image" content="/articulos/007-Crypter/preview1.png">
+    <meta property="og:description" content="¿A quién no le gusta mantener sus credenciales seguras? Hace unos meses y siéndo algo paranóico, me di a la tarea de crear un Cryper de texto plano para poder mantener ya sea texto importante o datos.">
+    <meta property="og:site_name" content="Ethergroup | Blog">
+    <title>PASS-CRYPT-v0.1 - Crypter de texto plano programado en C - Ethergroup | Blog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" href="/theme/images/icon-hires.png" sizes="192x192" />
+    <link rel="icon" href="/theme/images/icon-normal.png" sizes="128x128" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-76x76.png" sizes="76x76" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-120x120.png" sizes="120x120" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-152x152.png" sizes="152x152" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-180x180.png" sizes="180x180" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" />
+    <link rel="stylesheet" href="/theme/css/movimientolibre-bs5.css" />
+</head>
+<body>
+<nav id="navigationBase" class="navbar navbar-expand-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigationCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item"><a class="nav-link" href="/authors.html">Autores</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tags.html">Etiquetas</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://ethergroup.mx/">EtherGroup</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li><a class="mx-2" href="https://www.instagram.com/ethergroup/" target="_blank"><i class="fab fa-instagram-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.facebook.com/EtherGroup-184831138858274" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.linkedin.com/company/ethergroup" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
+            </ul>
+    </div>
+    </div>
+</nav><header id="headerSite" class="mb-4">
+    <div id="headerSiteImage" class="container" itemscope itemtype="http://schema.org/Organization">
+        <div class="row">
+            <div class="col-xl-8">
+                <h1 class="display-2" itemprop="name">Ethergroup | Blog</h1>
+                <p class="lead" itemprop="description">Blog sobre tecnologías, hacking, ciberseguridad, software libre y mucho más</p>
+            </div>
+        </div>
+    </div>
+</header>    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+    <article>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Article",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Ethergroup | Blog",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "/theme/images/ethergroup.png"
+                    },
+                    "url": ""
+                },
+                "author": "Imir Torres",
+                "name": "PASS-CRYPT-v0.1 - Crypter de texto plano programado en C",
+                "headline": "PASS-CRYPT-v0.1 - Crypter de texto plano programado en C",
+                "description": "¿A quién no le gusta mantener sus credenciales seguras? Hace unos meses y siéndo algo paranóico, me di a la tarea de crear un Cryper de texto plano para poder mantener ya sea texto importante o datos.",
+                "dateCreated": "2017-04-18 11:00:00-05:00",
+                "datePublished": "2017-04-18 11:00:00-05:00",
+                "dateModified": "",
+                "image": "/articulos/007-Crypter/preview1.png",
+                "url": "/articulos/007-Crypter/"
+            }
+        </script>
+        <h2>PASS-CRYPT-v0.1 - Crypter de texto plano programado en C</h2>
+        <p class="lead">¿A quién no le gusta mantener sus credenciales seguras? Hace unos meses y siéndo algo paranóico, me di a la tarea de crear un Cryper de texto plano para poder mantener ya sea texto importante o datos.</p>
+        <p>18 April 2017</p>
+        <p><img class="img-fluid" src="007.jpg" alt="Foto 1"></p>
+<hr>
+<p>¿A quién no le gusta mantener sus credenciales seguras? Hace unos meses y siéndo algo paranóico, me di a la tarea de crear un Cryper de texto plano para poder mantener ya sea texto importante o datos, cifrados de una manera muy personalizable.</p>
+<p><strong>¿QUÉ ES PASS-CRYPT-v0.1?</strong></p>
+<p>Es una herramienta  que permite hacer las veces de una especie de "hasher", para lo cual se sirve de una serie de algoritmos que, con ciertas entradas de texto por parte del usuario, permiten la creación de una llave que será utilizada para obfuscar el texto plano.</p>
+<p>En mi Github pueden encontrar el proyecto:</p>
+<p><img class="img-fluid" src="007-1.png" alt="Foto 2"></p>
+<p><a href="https://github.com/krhertz/PASS-CRYPT-v0.1">https://github.com/krhertz/PASS-CRYPT-v0.1</a></p>
+<p><strong>Estructura del algoritmo</strong></p>
+<p>Me tomó algo de tiempo determinar un algoritmo que me permitiera tanto cifrar como Descifrar el texto y al final terminé con algo que me dejó satisfecho.</p>
+<p>Para mantener la integridad de la información y de alguna manera evitar el "crackeo", el algoritmo se sirve de una serie de variables que pueden ser modificadas a fin de tener completo control durante el proceso de generación de la llave. Dichas variables son:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Custom</span><span class="w"> </span><span class="n">key</span><span class="p">:</span><span class="w"> </span><span class="n">Llave</span><span class="w"> </span><span class="n">proveida</span><span class="w"> </span><span class="n">por</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="p">(</span><span class="n">completamente</span><span class="w"> </span><span class="n">aleatoria</span><span class="w"> </span><span class="n">en</span><span class="w"> </span><span class="n">longitud</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">caracteres</span><span class="p">).</span><span class="w"></span>
+
+<span class="n">Module</span><span class="p">:</span><span class="w">     </span><span class="n">Número</span><span class="w"> </span><span class="n">necesario</span><span class="w"> </span><span class="n">para</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">generación</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">llave</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">A</span><span class="p">:</span><span class="w">         </span><span class="n">Veces</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">generar</span><span class="w"> </span><span class="n">una</span><span class="w"> </span><span class="n">rutina</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">B</span><span class="p">:</span><span class="w">          </span><span class="n">Longitud</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">llave</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">C</span><span class="p">:</span><span class="w">        </span><span class="n">Longitude</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="c">&#39;modulus&#39; utilizado en la opción &#39;Module&#39;.</span><span class="w"></span>
+
+<span class="n">NOTA</span><span class="p">:</span><span class="w"> </span><span class="n">Para</span><span class="w"> </span><span class="n">más</span><span class="w"> </span><span class="n">información</span><span class="w"> </span><span class="n">sobre</span><span class="w"> </span><span class="n">las</span><span class="w"> </span><span class="n">variables</span><span class="p">,</span><span class="w"> </span><span class="n">verificar</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">archivo</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;lib/cr.h&quot;</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+<p><strong>DESCARGA Y USO DE LA HERRAMIENTA:</strong></p>
+<p>Esta información la puede en contrar en el  Github, pero les dejo la versión en Español:</p>
+<div class="highlight"><pre><span></span><code>OPTIONS
+-c, --crypt                Bandera para cifrar el archivo de entrada.
+-d, --decrypt              Bandera para descifrar el archivo de entrada.
+-i, --in_file=FILE         Archivo a cifrar o descifrar.
+-o, --out_file=FILE        Out-file: resultado (archivo de salida cifrado o descifrado).
+&#39;start&#39;                    Siempre hay que escribir la palabra &#39;start&#39; al final del comando.
+
+-?, --help                 Ayuda.
+    --usage                Mostrar un pequeño mensaje de modo de uso.
+-V, --version              imprimir la versión del programa
+
+Usage: PASS-CRYPT [-cd?V] [-i FILE] [-o FILE] [--crypt] [--decrypt]
+    [--in_file=FILE] [--out_file=FILE] [--&#39;start&#39;] [--help] [--usage]
+    [--version] start
+</code></pre></div>
+
+<p>Para tener la herramienta, solo es necesario hacer un "git-clone" del repositorio. En una terminal:</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/krhertz/PASS-CRYPT-v0.1.git
+</code></pre></div>
+
+<p>Luego, acceder a la carpeta de la herramienta y compilar el código:</p>
+<div class="highlight"><pre><span></span><code>sudo make PASS-CRYPT
+</code></pre></div>
+
+<h4>Iniciamos la herramienta</h4>
+<p>Para cifrar:</p>
+<div class="highlight"><pre><span></span><code>sudo ./PASS-CRYPT  -c -i archivo_a_cifrar -o archivo_cifrado start
+</code></pre></div>
+
+<p>Para Descifrar:</p>
+<div class="highlight"><pre><span></span><code>sudo ./PASS-CRYPT  -d -i archivo_a_cifrar -o archivo_descifrado start
+</code></pre></div>
+
+<p>Una vez la herramienta es iniciada, esta pedirá un valor de llave. Este es una cadena de caracteres que el usuario ingresa. Es importante poner atención al texto: espacios, puntos, comas, ¡todo! Si no ponemos atención a ello, al generar la llave, hasta un simple punto puede hacer que se genere una llave completamente diferente y, por ende, la información original no mostrada.</p>
+<p>No es lo mismo:</p>
+<div class="highlight"><pre><span></span><code><span class="n">key</span><span class="o">:</span><span class="w"> </span><span class="n">password</span><span class="w"></span>
+<span class="n">modul</span><span class="o">:</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+</code></pre></div>
+
+<p>que:</p>
+<div class="highlight"><pre><span></span><code><span class="n">key</span><span class="o">:</span><span class="w"> </span><span class="n">PassworD</span><span class="w"></span>
+<span class="n">modul</span><span class="o">:</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+</code></pre></div>
+
+<p>Mantengan sus credenciales en un lugar seguro. Si estudian el código, pueden tener el control de todo el proceso de generación de la llave. Hagan uso de caracteres ASCII solamente. Puedes cifrar textos enteros. En el archivo "cr.h", se encuentra todo el algoritmo las variables 'A', 'B' y 'C' son modificables. Solo recuerden que cualquier cambio a las variables, necesitará que el código sea recompilado para aceptar los cambios.</p>
+<p><strong>Exploiting vulnerabilities, creating new ways through</strong> <em>Happy Hacking!</em></p>
+    </article>
+            </div>
+            <div class="col-lg-4">
+                <aside>
+<div id="asideAbout" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">A cerca de EtherGroup</h3>
+        <p class="card-text">
+            Ethergroup es una empresa mexicana dedicada 
+            a proveer servicios integrales en tecnologías
+            de Información. Lideramos la transformación 
+            tecnológica de nuestros clientes paso a paso, 
+            de forma segura y fungimos como impulso a su 
+            negocio en esta era digital.
+            <br> <br>
+            En Ethergroup nos encanta compartir 
+            contenido te dejamos este espacio, 
+            que busca divulgar conocimiento de 
+            diferentes áreas.
+        </p>
+    </div>
+</div><div id="asideTags" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">Etiquetas</h3>
+        <ul class="list-group list-group-flush">
+<li class="list-group-item"><a href="/tag/ciberataque.html">Ciberataque</a></li><li class="list-group-item"><a href="/tag/ciberataques.html">Ciberataques</a></li><li class="list-group-item"><a href="/tag/ciberseguridad.html">Ciberseguridad</a></li><li class="list-group-item"><a href="/tag/hacking.html">Hacking</a></li><li class="list-group-item"><a href="/tag/linux.html">Linux</a></li><li class="list-group-item"><a href="/tag/malware.html">Malware</a></li><li class="list-group-item"><a href="/tag/programacion.html">Programación</a></li><li class="list-group-item"><a href="/tag/ransomware.html">Ransomware</a></li><li class="list-group-item"><a href="/tag/servidores.html">Servidores</a></li><li class="list-group-item"><a href="/tag/vulnerabilidad.html">Vulnerabilidad</a></li>        </ul>
+    </div>
+</div>                </aside>
+            </div>
+        </div>
+    </div>
+<footer class="text-muted">
+    <div class="container">
+        <p>
+            Copyright &copy; Ethergroup 2021 | Cybersecurity E-group S. de R.L. de C.V. Sitio web de la empresa Ethergroup.
+            Sitio web de la empresa <a href="https://ethergroup.mx/">EtherGroup.</a> 
+        </p>
+    </div>
+</footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/theme/js/navigation.js"></script>
+</body>
+</html>

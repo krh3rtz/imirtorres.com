@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Pelican Static Site Generator, Powered by Python" />
+    <meta name="description" content="RAASnet es un proyecto escrito en Python que se creó para demostrar lo fácil que es desarrollar ransomware y ver cómo funciona.">
+    <meta name="keywords" content="Hacking, Malware, Programación, articulos">
+    <meta name="author" content="EtherGroup">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="RAASnet: Ransomware-as-a-Service de código abierto">
+    <meta name="twitter:description" content="RAASnet es un proyecto escrito en Python que se creó para demostrar lo fácil que es desarrollar ransomware y ver cómo funciona.">
+    <meta name="twitter:image" content="/articulos/016-Raas/preview1.png">
+    <meta property="og:title" content="RAASnet: Ransomware-as-a-Service de código abierto">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/articulos/016-Raas/">
+    <meta property="og:image" content="/articulos/016-Raas/preview1.png">
+    <meta property="og:description" content="RAASnet es un proyecto escrito en Python que se creó para demostrar lo fácil que es desarrollar ransomware y ver cómo funciona.">
+    <meta property="og:site_name" content="Ethergroup | Blog">
+    <title>RAASnet: Ransomware-as-a-Service de código abierto - Ethergroup | Blog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" href="/theme/images/icon-hires.png" sizes="192x192" />
+    <link rel="icon" href="/theme/images/icon-normal.png" sizes="128x128" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-76x76.png" sizes="76x76" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-120x120.png" sizes="120x120" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-152x152.png" sizes="152x152" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-180x180.png" sizes="180x180" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" />
+    <link rel="stylesheet" href="/theme/css/movimientolibre-bs5.css" />
+</head>
+<body>
+<nav id="navigationBase" class="navbar navbar-expand-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigationCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item"><a class="nav-link" href="/authors.html">Autores</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tags.html">Etiquetas</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://ethergroup.mx/">EtherGroup</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li><a class="mx-2" href="https://www.instagram.com/ethergroup/" target="_blank"><i class="fab fa-instagram-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.facebook.com/EtherGroup-184831138858274" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.linkedin.com/company/ethergroup" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
+            </ul>
+    </div>
+    </div>
+</nav><header id="headerSite" class="mb-4">
+    <div id="headerSiteImage" class="container" itemscope itemtype="http://schema.org/Organization">
+        <div class="row">
+            <div class="col-xl-8">
+                <h1 class="display-2" itemprop="name">Ethergroup | Blog</h1>
+                <p class="lead" itemprop="description">Blog sobre tecnologías, hacking, ciberseguridad, software libre y mucho más</p>
+            </div>
+        </div>
+    </div>
+</header>    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+    <article>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Article",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Ethergroup | Blog",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "/theme/images/ethergroup.png"
+                    },
+                    "url": ""
+                },
+                "author": "EtherGroup",
+                "name": "RAASnet: Ransomware-as-a-Service de código abierto",
+                "headline": "RAASnet: Ransomware-as-a-Service de código abierto",
+                "description": "RAASnet es un proyecto escrito en Python que se creó para demostrar lo fácil que es desarrollar ransomware y ver cómo funciona.",
+                "dateCreated": "2021-06-10 10:00:00-05:00",
+                "datePublished": "2021-06-10 10:00:00-05:00",
+                "dateModified": "",
+                "image": "/articulos/016-Raas/preview1.png",
+                "url": "/articulos/016-Raas/"
+            }
+        </script>
+        <h2>RAASnet: Ransomware-as-a-Service de código abierto</h2>
+        <p class="lead">RAASnet es un proyecto escrito en Python que se creó para demostrar lo fácil que es desarrollar ransomware y ver cómo funciona.</p>
+        <p>10 June 2021</p>
+        <p><img class="img-fluid" src="016.jpg" alt="Foto 1"></p>
+<hr>
+<p>RAASnet es un proyecto escrito en Python que se creó para demostrar lo fácil que es desarrollar ransomware y ver cómo funciona. El script funciona en Windows, Linux y MacOS. En Windows se recomienda compilar payload.py en formato EXE para hacerlo más portátil.</p>
+<p>Ni que decir tiene que el uso de esta herramienta debe limitarse a la investigación y análisis de este tipo de amenazas, nunca para dañar un tercero y/o con propósito lucrativo.</p>
+<h3>Instalación</h3>
+<p>Descarga e instala la última versión de Python 3.</p>
+<p>Luego ejecuta:</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/leonv024/RAASNet.git
+pip3 install -r requirements.txt
+python3 RAASNet.py
+</code></pre></div>
+
+<p><img class="img-fluid" src="016-1.png" alt="Foto 2"></p>
+<p>En Linux podríamos necesitar ejecutar los siguientes paquetes:</p>
+<div class="highlight"><pre><span></span><code>sudo apt install python3-tk python3-pil python3-pil.imagetk libgeoip1 libgeoip-dev geoip-bin
+Registro
+</code></pre></div>
+
+<p>El primer paso evidentemente es registrarnos en la plataforma de RAAS (Ransomware-As-A-Service), en este caso contra la URL <a href="https://zeznzo.nl/req.py">https://zeznzo.nl/req.py</a> en el cloud de Google:</p>
+<p><img class="img-fluid" src="016-2.png" alt="Foto 3"></p>
+<p><img class="img-fluid" src="016-3.png" alt="Foto 4"></p>
+<p>También podemos atacar directamente al servicio onion (Tor) del operador: hplqdv5fo3vw3fjyamyer7yuc7xtvtop2j3fipc7psf3pxvhoqjoqkid.onion</p>
+<p>Si todo ha ido bien podremos loggearnos y nos encontraremos con el panel de control del afiliado:</p>
+<p><img class="img-fluid" src="016-4.png" alt="Foto 5"></p>
+<p><img class="img-fluid" src="016-5.png" alt="Foto 6"></p>
+<h3>Generando el payload</h3>
+<p>El siguiente paso es generar el payload que debe ser ejecutado en el equipo de la victíma. Si hacemos clic en el menú GENERATE PAYLOAD abriremos otro menú con algunas opciones interesantes:</p>
+<p><img class="img-fluid" src="016-6.png" alt="Foto 7"></p>
+<p>Como por ejemplo cambiar el mensaje de extorsión o ransom:</p>
+<p><img class="img-fluid" src="016-7.png" alt="Foto 8"></p>
+<p>o el método de cifrado, que en para el ejemplo mantendremos en PyCrypto. Si pulsamos el botón GENERATE la salida serán dos scripts en python: el payload y el decryptor correspondiente.</p>
+<p><img class="img-fluid" src="016-8.png" alt="Foto 9"></p>
+<p>Si echamos un vistazo al código comprobaremos qué fácil resulta el proceso de cifrado y descifrado seleccionados:</p>
+<p>payload.py: cifrado</p>
+<p><img class="img-fluid" src="016-9.png" alt="Foto 10"></p>
+<p>decryptor.py:</p>
+<p><img class="img-fluid" src="016-10.png" alt="Foto 11"></p>
+<p>Como vez se trata de un cifrado en bloque (CBC) con AES. El mensaje debe tener un tamaño o longitud de 16 por lo que se añade un padding de ceros hasta completarlo. Por otro lado, además de la clave, AES también necesita un vector de inicialización (iv). Este vector de inicialización se genera con cada cifrado, y su propósito es producir diferentes datos cifrados para que un atacante no pueda hacer un criptoanálisis para inferir la clave o los datos en claro de los mensajes.</p>
+<p>Ahora que tenemos el payload y el decryptor, si nuestra víctima usa Windows nos interesará compilar el script a EXE para hacerlo portable:</p>
+<p><img class="img-fluid" src="016-11.png" alt="Foto 12"></p>
+<p><img class="img-fluid" src="016-12.png" alt="Foto 13"></p>
+<p><img class="img-fluid" src="016-13.png" alt="Foto 14"></p>
+<p>Ojo que ambos payloads, el script en Python y el exe son detectados por Windows Defender:</p>
+<p><img class="img-fluid" src="016-14.png" alt="Foto 15"></p>
+<p><img class="img-fluid" src="016-15.png" alt="Foto 16"></p>
+<p>Por lo que si quieres que se ejecute en la máquina de la víctima tendréis que cambiar el encoder (por defecto morse) u ofuscarlo previamente mediante pyarmor u otra herramienta.</p>
+<p>Tampoco olvidéis levantar el servidor que recibirá las claves en cuanto el ransomware la genere para cifrar los archivos:</p>
+<p><img class="img-fluid" src="016-16.png" alt="Foto 17"></p>
+<p><img class="img-fluid" src="016-17.png" alt="Foto 18"></p>
+<p>Si todo ha ido bien (o mal para la víctima), el ransomware generará el típico mensaje de aviso/extorsión:</p>
+<p><img class="img-fluid" src="016-18.png" alt="Foto 19"></p>
+<p>Todos los ficheros en la ruta especificada habrán sido cifrados y renombrados añadiendo .DEMON:</p>
+<p><img class="img-fluid" src="016-19.png" alt="Foto 20"></p>
+<p>Y durante el proceso y tal como podéis observar en el código del payload.py la clave se habrá mandado al key collector:</p>
+<p><img class="img-fluid" src="016-20.png" alt="Foto 21"></p>
+<p>y paralelamente al servidor del operador del RaaS: </p>
+<p><img class="img-fluid" src="016-21.png" alt="Foto 22"></p>
+<p>por lo que si acceder al panel debería poder verlo también:</p>
+<p><img class="img-fluid" src="016-22.png" alt="Foto 23"></p>
+<p>Una vez que se negocie la extorsión correspondiente y la víctima obtenga la key podrá descifrar sus archivos fácilmente con el decryptor.</p>
+<p>Lo primero que tendrá que hacer es seleccionar el tipo de cifrado oportuno:</p>
+<p><img class="img-fluid" src="016-23.png" alt="Foto 24"></p>
+<p>Introducir la clave:</p>
+<p><img class="img-fluid" src="016-24.png" alt="Foto 25"></p>
+<p>y seleccionar la ruta donde los archivos fueron cifrados:</p>
+<p><img class="img-fluid" src="016-25.png" alt="Foto 26"></p>
+<p>Ojo aquí también porque si se introduce una key incorrecta los archivos a recuperar podrían corromperse y perderse:</p>
+<p><img class="img-fluid" src="016-26.png" alt="Foto 27"></p>
+<p>Pero si todo ha ido bien, la victima recuperará sus archivos: </p>
+<p><img class="img-fluid" src="016-27.png" alt="Foto 28"></p>
+<p>Proyecto: <a href="https://github.com/leonv024/RAASNet">https://github.com/leonv024/RAASNet</a></p>
+    </article>
+            </div>
+            <div class="col-lg-4">
+                <aside>
+<div id="asideAbout" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">A cerca de EtherGroup</h3>
+        <p class="card-text">
+            Ethergroup es una empresa mexicana dedicada 
+            a proveer servicios integrales en tecnologías
+            de Información. Lideramos la transformación 
+            tecnológica de nuestros clientes paso a paso, 
+            de forma segura y fungimos como impulso a su 
+            negocio en esta era digital.
+            <br> <br>
+            En Ethergroup nos encanta compartir 
+            contenido te dejamos este espacio, 
+            que busca divulgar conocimiento de 
+            diferentes áreas.
+        </p>
+    </div>
+</div><div id="asideTags" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">Etiquetas</h3>
+        <ul class="list-group list-group-flush">
+<li class="list-group-item"><a href="/tag/ciberataque.html">Ciberataque</a></li><li class="list-group-item"><a href="/tag/ciberataques.html">Ciberataques</a></li><li class="list-group-item"><a href="/tag/ciberseguridad.html">Ciberseguridad</a></li><li class="list-group-item"><a href="/tag/hacking.html">Hacking</a></li><li class="list-group-item"><a href="/tag/linux.html">Linux</a></li><li class="list-group-item"><a href="/tag/malware.html">Malware</a></li><li class="list-group-item"><a href="/tag/programacion.html">Programación</a></li><li class="list-group-item"><a href="/tag/ransomware.html">Ransomware</a></li><li class="list-group-item"><a href="/tag/servidores.html">Servidores</a></li><li class="list-group-item"><a href="/tag/vulnerabilidad.html">Vulnerabilidad</a></li>        </ul>
+    </div>
+</div>                </aside>
+            </div>
+        </div>
+    </div>
+<footer class="text-muted">
+    <div class="container">
+        <p>
+            Copyright &copy; Ethergroup 2021 | Cybersecurity E-group S. de R.L. de C.V. Sitio web de la empresa Ethergroup.
+            Sitio web de la empresa <a href="https://ethergroup.mx/">EtherGroup.</a> 
+        </p>
+    </div>
+</footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/theme/js/navigation.js"></script>
+</body>
+</html>

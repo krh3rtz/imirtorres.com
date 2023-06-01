@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Pelican Static Site Generator, Powered by Python" />
+    <meta name="description" content="De nuevo con otro artículo/manual para la implementación de servicios en GNU/Linux. En esta ocasión implementaremos un servicio de DHCP.">
+    <meta name="keywords" content="Linux, articulos">
+    <meta name="author" content="Imir Torres">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="Servidor DHCP Linux">
+    <meta name="twitter:description" content="De nuevo con otro artículo/manual para la implementación de servicios en GNU/Linux. En esta ocasión implementaremos un servicio de DHCP.">
+    <meta name="twitter:image" content="/articulos/029-Dhcp/preview1.png">
+    <meta property="og:title" content="Servidor DHCP Linux">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/articulos/029-Dhcp/">
+    <meta property="og:image" content="/articulos/029-Dhcp/preview1.png">
+    <meta property="og:description" content="De nuevo con otro artículo/manual para la implementación de servicios en GNU/Linux. En esta ocasión implementaremos un servicio de DHCP.">
+    <meta property="og:site_name" content="Ethergroup | Blog">
+    <title>Servidor DHCP Linux - Ethergroup | Blog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" href="/theme/images/icon-hires.png" sizes="192x192" />
+    <link rel="icon" href="/theme/images/icon-normal.png" sizes="128x128" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-76x76.png" sizes="76x76" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-120x120.png" sizes="120x120" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-152x152.png" sizes="152x152" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-180x180.png" sizes="180x180" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" />
+    <link rel="stylesheet" href="/theme/css/movimientolibre-bs5.css" />
+</head>
+<body>
+<nav id="navigationBase" class="navbar navbar-expand-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigationCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item"><a class="nav-link" href="/authors.html">Autores</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tags.html">Etiquetas</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://ethergroup.mx/">EtherGroup</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li><a class="mx-2" href="https://www.instagram.com/ethergroup/" target="_blank"><i class="fab fa-instagram-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.facebook.com/EtherGroup-184831138858274" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.linkedin.com/company/ethergroup" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
+            </ul>
+    </div>
+    </div>
+</nav><header id="headerSite" class="mb-4">
+    <div id="headerSiteImage" class="container" itemscope itemtype="http://schema.org/Organization">
+        <div class="row">
+            <div class="col-xl-8">
+                <h1 class="display-2" itemprop="name">Ethergroup | Blog</h1>
+                <p class="lead" itemprop="description">Blog sobre tecnologías, hacking, ciberseguridad, software libre y mucho más</p>
+            </div>
+        </div>
+    </div>
+</header>    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+    <article>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Article",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Ethergroup | Blog",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "/theme/images/ethergroup.png"
+                    },
+                    "url": ""
+                },
+                "author": "Imir Torres",
+                "name": "Servidor DHCP Linux",
+                "headline": "Servidor DHCP Linux",
+                "description": "De nuevo con otro artículo/manual para la implementación de servicios en GNU/Linux. En esta ocasión implementaremos un servicio de DHCP.",
+                "dateCreated": "2022-09-08 10:00:00-05:00",
+                "datePublished": "2022-09-08 10:00:00-05:00",
+                "dateModified": "",
+                "image": "/articulos/029-Dhcp/preview1.png",
+                "url": "/articulos/029-Dhcp/"
+            }
+        </script>
+        <h2>Servidor DHCP Linux</h2>
+        <p class="lead">De nuevo con otro artículo/manual para la implementación de servicios en GNU/Linux. En esta ocasión implementaremos un servicio de DHCP.</p>
+        <p>08 September 2022</p>
+        <p><img class="img-fluid" src="029.jpg" alt="Foto 0"></p>
+<hr>
+<p>De nuevo con otro artículo/manual para la implementación de servicios en GNU/Linux. En esta ocasión implementaremos un servicio de DHCP. Para hacerlo, solo necesitaremos una instancia de Alma Linux. Sin embargo, no es necesario que sea esta distribución.</p>
+<p>Antes que nada, es importante que dentro del segmento de red no exista otro servidor DHCP (ej. el que tienen la mayoría de routers/firewalls en la red). Cerciórate de que este servicio esté desactivado antes de hacer cualquier configuración. Una vez realizado esto, es necesario realizar la actualización de paquetes de nuestro sistema, así como la instalación del paquete DHCP desde nuestra terminal o conexión por ssh como usuarios con privilegios o directamente root. Es importante que el servidor que usemos tenga una IP estática.</p>
+<div class="highlight"><pre><span></span><code>dnf update &amp;&amp;  dnf install dhcp
+</code></pre></div>
+
+<p>En nuestro caso hipotético la información de red es la siguiente:</p>
+<p>Segmento: 10.0.0.0/24
+Router: 10.0.0.1
+Máscara de red: 255.255.255.0 (CIDR 24)
+DNS Server: 208.67.222.222 (Estos son los DNS de OpenDNS. Si hay alguno local o quieres utilizar otro lo podemos incluir)</p>
+<p>Ahora bien, recordemos que todas las configuraciones en Linux son un archivo. Por ello iremos a configurar el correspondiente a este servicio. Puedes utilizar cualquier editor de texto, en mi caso utilizo vim:</p>
+<div class="highlight"><pre><span></span><code>vim /etc/dhcp/dhcpd.conf
+</code></pre></div>
+
+<p>Una vez dentro, presionamos la tecla ‘e’ para entrar en el modo edición.</p>
+<p>Ahora escribiremos lo siguiente dentro del archivo:</p>
+<div class="highlight"><pre><span></span><code># TIEMPO PARA LIBERAR LAS DIRECCIONES EN LA RED,
+# ESTA CONFIGURACIÓN ES GENERAL
+
+default-lease-time 600;
+max-lease-time 7200;
+
+# RANGO DE RED A CONFIGURAR
+subnet 10.0.0.0 netmask 255.255.255.0 {
+    option range 10.0.0.100 10.0.0.200;
+    option router 10.0.0.1;
+    option domain-name-servers 208.67.222.222;
+    option domain-controller;
+}
+</code></pre></div>
+
+<p>En caso de que queramos reservar direcciones IP, podemos hacerlo por medio de MAC Addresss de la siguiente forma:</p>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nt">IP</span><span class="w"> </span><span class="nt">RESERVADA</span><span class="w"> </span><span class="nt">PARA</span><span class="w"> </span><span class="nt">EL</span><span class="w"> </span><span class="nt">EQUIPO</span><span class="w"> </span><span class="nt">CON</span><span class="w"> </span><span class="nt">L</span><span class="w"> </span><span class="nt">MAC</span><span class="w"> </span><span class="nt">ADDRESS</span><span class="w">  </span><span class="nt">00</span><span class="p">:</span><span class="nd">A0</span><span class="p">:</span><span class="nd">78</span><span class="p">:</span><span class="nd">8E</span><span class="p">:</span><span class="nd">9E</span><span class="p">:</span><span class="nd">AA</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="nt">DE</span><span class="w"> </span><span class="nt">IGUAL</span><span class="w"> </span><span class="nt">FORMA</span><span class="w"> </span><span class="nt">LE</span><span class="w"> </span><span class="nt">RESERVAMOS</span><span class="w"> </span><span class="nt">UN</span><span class="w"> </span><span class="nt">NOMBRE</span><span class="w"> </span><span class="nt">POR</span><span class="w"> </span><span class="nt">MEDIO</span><span class="w"> </span><span class="nt">DE</span><span class="w"> </span><span class="nt">ESTE</span><span class="w"> </span><span class="nt">SERVICIO</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="nt">EN</span><span class="w"> </span><span class="nt">ESTE</span><span class="w"> </span><span class="nt">CASO</span><span class="w">  </span><span class="err">‘</span><span class="nt">apex</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">com</span><span class="err">’</span><span class="w"></span>
+
+<span class="nt">host</span><span class="w"> </span><span class="nt">apex</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="err">option</span><span class="w"> </span><span class="err">host-name</span><span class="w"> </span><span class="err">&quot;apex.example.com&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="err">hardware</span><span class="w"> </span><span class="err">ethernet</span><span class="w"> </span><span class="err">00:</span><span class="n">A0</span><span class="p">:</span><span class="mi">78</span><span class="o">:</span><span class="mi">8</span><span class="n">E</span><span class="o">:</span><span class="mi">9</span><span class="n">E</span><span class="o">:</span><span class="n">AA</span><span class="p">;</span><span class="w"></span>
+<span class="err">fixed-address</span><span class="w"> </span><span class="err">10.0.0.2</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>Una vez terminamos de editar estas opciones, podremos guardar nuestro archivo. Para esto presionamos la tecla ‘esc’ seguido de ‘:x’ y damos ‘enter’. Con esto habremos escrito el archivo.</p>
+<p>Es momento de reiniciar el servicio para ver los cambios:</p>
+<div class="highlight"><pre><span></span><code>systemctl start dhcpd
+</code></pre></div>
+
+<p>También lo podemos habilitar para que se inicie automáticamente en cada reboot:</p>
+<div class="highlight"><pre><span></span><code>systemctl enable dhcpd
+</code></pre></div>
+
+<p>Ahora bien, bastará con conectar un nuevo equipo a esta red y este deberá recibir una ip de nuestro rango de forma automática.</p>
+<p>Video Referencia en el curso de servidores (Debian Server): <a href="https://www.youtube.com/watch?v=rp9lPKC-yTk&amp;list=PLHZHedbtfQEOsUzXIlliX9rLG_3NsxjBH&amp;index=2&amp;ab_channel=EtherGroup">https://www.youtube.com/watch?v=rp9lPKC-yTk&amp;list=PLHZHedbtfQEOsUzXIlliX9rLG_3NsxjBH&amp;index=2&amp;ab_channel=EtherGroup</a></p>
+<p>¡Happy Hacking!</p>
+    </article>
+            </div>
+            <div class="col-lg-4">
+                <aside>
+<div id="asideAbout" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">A cerca de EtherGroup</h3>
+        <p class="card-text">
+            Ethergroup es una empresa mexicana dedicada 
+            a proveer servicios integrales en tecnologías
+            de Información. Lideramos la transformación 
+            tecnológica de nuestros clientes paso a paso, 
+            de forma segura y fungimos como impulso a su 
+            negocio en esta era digital.
+            <br> <br>
+            En Ethergroup nos encanta compartir 
+            contenido te dejamos este espacio, 
+            que busca divulgar conocimiento de 
+            diferentes áreas.
+        </p>
+    </div>
+</div><div id="asideTags" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">Etiquetas</h3>
+        <ul class="list-group list-group-flush">
+<li class="list-group-item"><a href="/tag/ciberataque.html">Ciberataque</a></li><li class="list-group-item"><a href="/tag/ciberataques.html">Ciberataques</a></li><li class="list-group-item"><a href="/tag/ciberseguridad.html">Ciberseguridad</a></li><li class="list-group-item"><a href="/tag/hacking.html">Hacking</a></li><li class="list-group-item"><a href="/tag/linux.html">Linux</a></li><li class="list-group-item"><a href="/tag/malware.html">Malware</a></li><li class="list-group-item"><a href="/tag/programacion.html">Programación</a></li><li class="list-group-item"><a href="/tag/ransomware.html">Ransomware</a></li><li class="list-group-item"><a href="/tag/servidores.html">Servidores</a></li><li class="list-group-item"><a href="/tag/vulnerabilidad.html">Vulnerabilidad</a></li>        </ul>
+    </div>
+</div>                </aside>
+            </div>
+        </div>
+    </div>
+<footer class="text-muted">
+    <div class="container">
+        <p>
+            Copyright &copy; Ethergroup 2021 | Cybersecurity E-group S. de R.L. de C.V. Sitio web de la empresa Ethergroup.
+            Sitio web de la empresa <a href="https://ethergroup.mx/">EtherGroup.</a> 
+        </p>
+    </div>
+</footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/theme/js/navigation.js"></script>
+</body>
+</html>

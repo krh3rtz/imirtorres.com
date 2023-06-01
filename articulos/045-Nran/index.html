@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Pelican Static Site Generator, Powered by Python" />
+    <meta name="description" content="En los ataques vistos hasta el momento, obtiene acceso explotando vulnerabilidades conocidas en dispositivos VPN, se mueve lateralmente a otros sistemas e implementa herramientas legítimas de administración y monitorización remota para lograr la persistencia en la red.">
+    <meta name="keywords" content="Ransomware, articulos">
+    <meta name="author" content="Ethergroup">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="El nuevo 'ransomware' CACTUS abusa de las herramientas de administración remota">
+    <meta name="twitter:description" content="En los ataques vistos hasta el momento, obtiene acceso explotando vulnerabilidades conocidas en dispositivos VPN, se mueve lateralmente a otros sistemas e implementa herramientas legítimas de administración y monitorización remota para lograr la persistencia en la red.">
+    <meta name="twitter:image" content="/articulos/045-Nran/preview1.png">
+    <meta property="og:title" content="El nuevo 'ransomware' CACTUS abusa de las herramientas de administración remota">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/articulos/045-Nran/">
+    <meta property="og:image" content="/articulos/045-Nran/preview1.png">
+    <meta property="og:description" content="En los ataques vistos hasta el momento, obtiene acceso explotando vulnerabilidades conocidas en dispositivos VPN, se mueve lateralmente a otros sistemas e implementa herramientas legítimas de administración y monitorización remota para lograr la persistencia en la red.">
+    <meta property="og:site_name" content="Ethergroup | Blog">
+    <title>El nuevo 'ransomware' CACTUS abusa de las herramientas de administración remota - Ethergroup | Blog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" href="/theme/images/icon-hires.png" sizes="192x192" />
+    <link rel="icon" href="/theme/images/icon-normal.png" sizes="128x128" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-76x76.png" sizes="76x76" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-120x120.png" sizes="120x120" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-152x152.png" sizes="152x152" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-180x180.png" sizes="180x180" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" />
+    <link rel="stylesheet" href="/theme/css/movimientolibre-bs5.css" />
+</head>
+<body>
+<nav id="navigationBase" class="navbar navbar-expand-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigationCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item"><a class="nav-link" href="/authors.html">Autores</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tags.html">Etiquetas</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://ethergroup.mx/">EtherGroup</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li><a class="mx-2" href="https://www.instagram.com/ethergroup/" target="_blank"><i class="fab fa-instagram-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.facebook.com/EtherGroup-184831138858274" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.linkedin.com/company/ethergroup" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
+            </ul>
+    </div>
+    </div>
+</nav><header id="headerSite" class="mb-4">
+    <div id="headerSiteImage" class="container" itemscope itemtype="http://schema.org/Organization">
+        <div class="row">
+            <div class="col-xl-8">
+                <h1 class="display-2" itemprop="name">Ethergroup | Blog</h1>
+                <p class="lead" itemprop="description">Blog sobre tecnologías, hacking, ciberseguridad, software libre y mucho más</p>
+            </div>
+        </div>
+    </div>
+</header>    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+    <article>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Article",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Ethergroup | Blog",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "/theme/images/ethergroup.png"
+                    },
+                    "url": ""
+                },
+                "author": "Ethergroup",
+                "name": "El nuevo 'ransomware' CACTUS abusa de las herramientas de administración remota",
+                "headline": "El nuevo 'ransomware' CACTUS abusa de las herramientas de administración remota",
+                "description": "En los ataques vistos hasta el momento, obtiene acceso explotando vulnerabilidades conocidas en dispositivos VPN, se mueve lateralmente a otros sistemas e implementa herramientas legítimas de administración y monitorización remota para lograr la persistencia en la red.",
+                "dateCreated": "2023-05-09 10:00:00-05:00",
+                "datePublished": "2023-05-09 10:00:00-05:00",
+                "dateModified": "",
+                "image": "/articulos/045-Nran/preview1.png",
+                "url": "/articulos/045-Nran/"
+            }
+        </script>
+        <h2>El nuevo 'ransomware' CACTUS abusa de las herramientas de administración remota</h2>
+        <p class="lead">En los ataques vistos hasta el momento, obtiene acceso explotando vulnerabilidades conocidas en dispositivos VPN, se mueve lateralmente a otros sistemas e implementa herramientas legítimas de administración y monitorización remota para lograr la persistencia en la red.</p>
+        <p>09 May 2023</p>
+        <p><img class="img-fluid" src="045.png" alt="Foto 1"></p>
+<hr>
+<p>Un grupo de ciberdelincuentes ha estado comprometiendo redes corporativas durante los dos últimos meses y ha estado implementando un nuevo ransomware que los investigadores han llamado CACTUS. En los ataques vistos hasta el momento, obtiene acceso explotando vulnerabilidades conocidas en dispositivos VPN, se mueve lateralmente a otros sistemas e implementa herramientas legítimas de administración y monitorización remota para lograr la persistencia en la red.</p>
+<p>“La denominación CACTUS se deriva del nombre de archivo proporcionado en la nota de rescate, cAcTUS.readme.txt, y el nombre autodeclarado dentro de la propia nota”, según Kroll Cyber Threat Intelligence. Los archivos cifrados se adjuntan con .cts1, aunque la empresa de ciberseguridad señala que el número al final de la extensión varía según los incidentes y las víctimas. Además, la exfiltración de datos confidenciales y la extorsión se hace a través de conocidos servicios de mensajería como Tox.</p>
+<h2>Intrusión inicial y movimiento lateral</h2>
+<p>En todos los casos investigados por Kroll, los atacantes lograron su punto de apoyo inicial en un dispositivo VPN utilizando una cuenta de servicio y luego implementaron una puerta trasera SSH que se conectó nuevamente a su servidor de comando y control (C2) y se ejecutó a través de una tarea programada. </p>
+<p>Esta actividad fue seguida inmediatamente por el reconocimiento de la red utilizando un escáner de red comercial de Windows fabricado por una empresa australiana llamada SoftPerfect. Se usaron comandos y secuencias de comandos adicionales de PowerShell para enumerar las computadoras en la red y extraer cuentas de usuario del registro de eventos de seguridad de Windows. En algunos casos, también se ha observado otro script de escaneo de red basado en PowerShell llamado PSnmap.ps1.</p>
+<p>Luego, el grupo descarga las credenciales de LSASS y busca archivos locales que puedan contener contraseñas para identificar cuentas que podrían permitirles saltar a otros sistemas a través del protocolo de escritorio remoto (RDP) y otros métodos. Para mantener la persistencia en los sistemas que comprometieron, los atacantes implementan herramientas RMM como Splashtop, AnyDesk y SuperOps, así como el implante Cobalt Strike o el proxy Chisel SOCKS5. El abuso de herramientas RMM legítimas es una técnica común entre los actores de amenazas.</p>
+<p>"Chisel ayuda a canalizar el tráfico a través de los cortafuegos para proporcionar comunicaciones ocultas al C2 del actor de amenazas y probablemente se use para extraer secuencias de comandos y herramientas adicionales en el punto final", dijeron los investigadores de Kroll. Uno de estos scripts utiliza la herramienta msiexec de Windows para intentar desinstalar programas antivirus comunes. En un caso, los atacantes incluso utilizaron la herramienta de desinstalación de Bitdefender.</p>
+<h2>Despliegue del ransomware CACTUS</h2>
+<p>Una vez que el grupo ha identificado los sistemas con datos confidenciales, utiliza la herramienta Rclone para filtrar la información a las cuentas de almacenamiento en la nube y se prepara para implementar el programa ransomware. Para hacer esto, aprovecha un script llamado TotalExec.ps1 que también han utilizado los ciberdelincuentes detrás del ransomware BlackBasta.</p>
+<p>Primero, los atacantes implementan un script por lotes llamado f1.bat que crea una nueva cuenta de usuario administrador en el sistema y agrega un script secundario llamado f2.bat a la lista de ejecución automática del sistema. Este script extrae el binario del ransomware de un archivo 7zip y lo ejecuta con una serie de banderas. La herramienta PsExec también se usa para ejecutar el binario en sistemas remotos.</p>
+<p>El binario de ransomware tiene tres modos de ejecución basados ??en las banderas que se le pasan: instalación, configuración y encriptación. En el modo de configuración, creará un archivo llamado C:\ProgramData\ntuser.dat que contiene datos de configuración cifrados para el ransomware. Luego crea una tarea programada que ejecuta el ataque.</p>
+<p>Cuando se ejecuta con el indicador de cifrado, el binario de ransomware extraerá y descifrará una clave pública RSA codificada. Luego comienza a generar claves AES para el cifrado de archivos, y esas claves luego se cifran con la clave pública RSA. El proceso aprovecha la implementación de Envelope de la biblioteca OpenSSL, lo que significa que el archivo cifrado resultante también contendrá la clave AES cifrada que se usó para cifrar el archivo. Para recuperar la clave AES, el usuario necesita la clave RSA privada, que está en manos de los atacantes.</p>
+<p>El informe de Kroll incluye un desglose de tácticas, técnicas y procedimientos (TTP) según el marco MITRE ATT&amp;CK, junto con indicadores de compromiso. Los investigadores recomiendan mantener actualizados los sistemas públicos, como los dispositivos VPN, implementar administradores de contraseñas y autenticación de dos factores, monitorizar los sistemas para la ejecución de PowerShell y registrar su uso, auditar las cuentas de administrador y servicio, implementar los principios de privilegios mínimos y revisar la copia de seguridad y estrategias para incluir al menos una copia de seguridad aislada de la red empresarial.</p>
+    </article>
+            </div>
+            <div class="col-lg-4">
+                <aside>
+<div id="asideAbout" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">A cerca de EtherGroup</h3>
+        <p class="card-text">
+            Ethergroup es una empresa mexicana dedicada 
+            a proveer servicios integrales en tecnologías
+            de Información. Lideramos la transformación 
+            tecnológica de nuestros clientes paso a paso, 
+            de forma segura y fungimos como impulso a su 
+            negocio en esta era digital.
+            <br> <br>
+            En Ethergroup nos encanta compartir 
+            contenido te dejamos este espacio, 
+            que busca divulgar conocimiento de 
+            diferentes áreas.
+        </p>
+    </div>
+</div><div id="asideTags" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">Etiquetas</h3>
+        <ul class="list-group list-group-flush">
+<li class="list-group-item"><a href="/tag/ciberataque.html">Ciberataque</a></li><li class="list-group-item"><a href="/tag/ciberataques.html">Ciberataques</a></li><li class="list-group-item"><a href="/tag/ciberseguridad.html">Ciberseguridad</a></li><li class="list-group-item"><a href="/tag/hacking.html">Hacking</a></li><li class="list-group-item"><a href="/tag/linux.html">Linux</a></li><li class="list-group-item"><a href="/tag/malware.html">Malware</a></li><li class="list-group-item"><a href="/tag/programacion.html">Programación</a></li><li class="list-group-item"><a href="/tag/ransomware.html">Ransomware</a></li><li class="list-group-item"><a href="/tag/servidores.html">Servidores</a></li><li class="list-group-item"><a href="/tag/vulnerabilidad.html">Vulnerabilidad</a></li>        </ul>
+    </div>
+</div>                </aside>
+            </div>
+        </div>
+    </div>
+<footer class="text-muted">
+    <div class="container">
+        <p>
+            Copyright &copy; Ethergroup 2021 | Cybersecurity E-group S. de R.L. de C.V. Sitio web de la empresa Ethergroup.
+            Sitio web de la empresa <a href="https://ethergroup.mx/">EtherGroup.</a> 
+        </p>
+    </div>
+</footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/theme/js/navigation.js"></script>
+</body>
+</html>

